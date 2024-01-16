@@ -31,14 +31,15 @@ class Player {
             if (!this.applied) {
                 this.applyVertiForce(-5);
                 this.x -= 2.5;
+                this.y -= 5;
                 this.applied = true;
             }
         } else {
             this.applied = false;
         }
 
-        // euler integration
         this.x += 2.25;
+        // euler integration for y
         this.vely += this.accy;
         this.y += this.vely;
 
@@ -48,14 +49,10 @@ class Player {
             this.vely = 0;
         }
 
+        // loop
         if (this.x > this.game.ctx.canvas.width + 128) {
             this.x = -64;
         }
-
-        // I used this page to approximate my constants
-        // https://web.archive.org/web/20130807122227/http://i276.photobucket.com/albums/kk21/jdaster64/smb_playerphysics.png
-        // I converted these values from hex and into units of pixels and seconds.
-      
 
         this.accy = 0;
     };
