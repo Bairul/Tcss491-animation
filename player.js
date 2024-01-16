@@ -30,8 +30,8 @@ class Player {
         if (this.animations.currentFrame() == 8) {
             if (!this.applied) {
                 this.applyVertiForce(-5);
-                this.x -= 2.5;
-                this.y -= 5;
+                this.x -= 5;
+                this.y += 4;
                 this.applied = true;
             }
         } else {
