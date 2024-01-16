@@ -23,24 +23,33 @@ class Player {
     }
 
     update() {
+        // gravity
         this.applyVertiForce(0.1);
 
+        // jump force
         if (this.animations.currentFrame() == 8) {
             if (!this.applied) {
                 this.applyVertiForce(-5);
+                this.x -= 2.5;
                 this.applied = true;
             }
         } else {
             this.applied = false;
         }
 
+        // euler integration
         this.x += 2.25;
         this.vely += this.accy;
         this.y += this.vely;
 
+        // touching ground
         if (this.y > 200) {
             this.y = 200;
             this.vely = 0;
+        }
+
+        if (this.x > this.game.ctx.canvas.width + 128) {
+            this.x = -64;
         }
 
         // I used this page to approximate my constants
